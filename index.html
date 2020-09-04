@@ -17,7 +17,7 @@
                 <form class="coffee-form mt-3 w-75 ml-3 ">
                     <label for="grounds">Grãos de Café</label>
                     <div class="input-group">
-                        <input class="form-control" id="grounds" type="number" name="grounds" size="" min="0" onkeyup="startFromGrounds()" onchange="startFromGrounds()">
+                        <input class="form-control" id="grounds" type="number" name="grounds" min="0" step="any" onkeyup="startFromGrounds()" onchange="startFromGrounds()">
                         <div class="input-group-append">
                             <select class="form-control" id="groundsUnit" name="groundsUnit" onchange="getValuesAndCalculate()">
                               <option id="g" value="1">
@@ -33,7 +33,7 @@
 
                     <label for="water">Quantidade de Água</label>
                     <div class="input-group">
-                        <input class="form-control" id="water" type="number" name="water" size="" min="0" onkeyup="startFromWater()" onchange="startFromWater()">
+                        <input class="form-control" id="water" type="number" name="water" min="0" step="any" onkeyup="startFromWater()" onchange="startFromWater()">
                         <div class="input-group-append">
                             <select class="form-control" id="waterUnit" name="waterUnit" onchange="getValuesAndCalculate()">
                                 <option id="ml" value="1">ml</option>
@@ -45,7 +45,7 @@
                     <label for="brew">Total Café</label>
                     <div class="input-group">
 
-                        <input class="form-control" id="brew" type="number" name="brew" onkeyup="startFromBrew()" onchange="startFromBrew()">
+                        <input class="form-control" id="brew" type="number" name="brew" min="0" step="any" onkeyup="startFromBrew()" onchange="startFromBrew()">
                         <div class="input-group-append">
                             <select class="form-control" id="brewUnit" name="brewUnit" onchange="getValuesAndCalculate()">
                                 <option id="ml" value="1">ml</option>
@@ -82,7 +82,7 @@
                       <form class="range-field w-75">
                         <input id="ratioRange" class="border-0" type="range" min="14" max="18"/>
                       </form>
-                      <span class="font-weight-bold indigo-text mr-2 mt-1">Delicado</span>  
+                      <span class="font-weight-bold indigo-text mr-2 mt-1">Delicado</span>
                     </div>
 
                 </form>

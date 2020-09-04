@@ -86,10 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let ratioRange = document.getElementById('ratioRange');
     ratioSelect.onchange = () => {
         ratioRange.value = ratioSelect.value
+        getValuesAndCalculate();
     }
 
     ratioRange.onchange = () => {
         ratioSelect.value = ratioRange.value
+        getValuesAndCalculate();
     }
 
     let stopwatch = document.getElementById('stopwatch'),
