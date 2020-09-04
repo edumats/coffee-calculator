@@ -1,3 +1,7 @@
+
+
+// For Coffee calculator
+
 var lastSet = "";
 
 function startFromGrounds() {
@@ -29,7 +33,7 @@ function getValues() {
 }
 
 function getValuesAndCalculate() {
-    var calc = getValues();
+    let calc = getValues();
 
     switch (lastSet) {
         case "grounds":
@@ -75,18 +79,57 @@ function calculateGroundsRatio(w, ww, r, gw) {
     return g
 }
 
-function startTimer() {
-    let stopwatch = document.getElementById('stopwatch');
-    let start = document.getElementById('start-button');
-    let seconds = 0;
-    start.onclick = addTime;
-}
 
-function addTime() {
-    seconds++;
+// For stopwatch
+document.addEventListener('DOMContentLoaded', () => {
+    let ratioSelect = document.getElementById('ratio');
+    let ratioRange = document.getElementById('ratioRange');
+    ratioSelect.onchange = () => {
+        ratioRange.value = ratioSelect.value
+    }
 
-}
+    ratioRange.onchange = () => {
+        ratioSelect.value = ratioRange.value
+    }
 
-document.addEventListerner('DOMContentLoaded', () => {
+    let stopwatch = document.getElementById('stopwatch'),
+        start = document.getElementById('start'),
+        stop = document.getElementById('stop'),
+        clear = document.getElementById('clear'),
+        seconds = 0, minutes = 0,
+        t;
 
+    function add() {
+        seconds++;
+        if (seconds >= 60) {
+            seconds = 0;
+            minutes++;
+            if (minutes >= 60) {
+                minutes = 0;
+
+            }
+        }
+
+        stopwatch.textContent = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+        timer();
+    }
+    function timer() {
+        t = setTimeout(add, 1000);
+    }
+    // timer();
+
+    /* Start button */
+    start.onclick = timer;
+
+    /* Stop button */
+    stop.onclick = function() {
+        clearTimeout(t);
+    }
+
+    /* Clear button */
+    clear.onclick = function() {
+        stopwatch.textContent = "00:00";
+        seconds = 0; minutes = 0;
+    }
 })
