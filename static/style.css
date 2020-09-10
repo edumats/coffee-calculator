@@ -1,5 +1,119 @@
-#stopwatch {
-    font-family: "Roboto Mono", monospace;
-    font-weight: 300;
-    font-size: 48px;
+.grid-container {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 510px 510px;
+    grid-template-rows: 700px 700px;
+}
+
+.grid-item {
+    font-family: Poppins-SemiBold, monospace;
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+
+}
+
+div.grid-container > div:nth-child(1) {
+    background-color: #89b795;
+}
+
+div.grid-container > div:nth-child(2) {
+    background-color: #91bed9;
+}
+
+div.grid-container > div:nth-child(3) {
+    background-color: #f49bb2;
+}
+
+div.grid-container > div:nth-child(4) {
+    background-color: white;
+    border: 1px solid black;
+}
+
+.grid-item > h3 {
+    font-family: 'Rubik';
+    font-size: 60pt;
+    font-weight: 400;
+    margin-top: 10%;
+}
+
+.grid-item > input[type=text] {
+    background: transparent;
+    font-family: 'Poppins';
+    font-size: 150pt;
+    width: 80%;
+}
+
+.grid-item > p {
+    font-family: 'Poppins';
+    font-size: 150pt;
+    font-weight: 600;
+}
+
+.display-qty {
+    display: inline-block;
+}
+
+.inline-buttons {
+    display: inline-block;
+    /* Removes spaces between child buttons */
+    font-size: 0;
+    margin-bottom: 10%;
+    height: 20%;
+}
+
+.inline-buttons > input[type=button] {
+    /* Reassigns font size to buttons */
+    font-size: 70pt;
+    font-weight: 600;
+    width: 40%;
+    border: none;
+    background-color: transparent;
+    border-bottom: 3px solid black;
+}
+
+.fa-stop, .fa-pause {
+    font-size: 30pt;
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+.inline-buttons > input[type=button]:hover {
+    background-color: black;
+    color: white;
+}
+
+/* #secondary-buttons {
+    height: 20%;
+} */
+
+.stopwatch-button {
+    font-family: 'Poppins';
+    /* font-weight: 600; */
+    width: 40%;
+    border: none;
+    border-bottom: 3px solid black;
+    background-color: transparent;
+    color: black;
+    font-size: 70pt;
+    height: 100%;
+}
+
+#start {
+    font-family: 'Poppins';
+    width: 80%;
+    height: 100%;
+    border: none;
+    border-bottom: 3px solid black;
+    background-color: transparent;
+    color: black;
+    font-size: 70pt;
+    margin-bottom: 10%;
+}
+
+#start:hover, .stopwatch-button:hover {
+    background-color: black;
+    color: white;
 }

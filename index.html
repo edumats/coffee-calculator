@@ -3,99 +3,71 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <!-- Bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
+        <!-- Custom Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+        <!-- Font Awesome -->
+        <script src="https://kit.fontawesome.com/ccd1b9e9e0.js" crossorigin="anonymous"></script>
+
+        <!-- Javascript -->
         <script type="text/javascript" src="static/script.js"></script>
+
+        <!-- CSS -->
         <link rel="stylesheet" href="static/style.css">
 
         <title>Calculador Café</title>
     </head>
     <body>
         <div class="container">
-            <div class="row justify-content-center">
-                <form class="coffee-form mt-3 w-75 ml-3 ">
-                    <label for="grounds">Grãos de Café</label>
-                    <div class="input-group">
-                        <input class="form-control" id="grounds" type="number" name="grounds" min="0" step="any" onkeyup="startFromGrounds()" onchange="startFromGrounds()">
-                        <div class="input-group-append">
-                            <select class="form-control" id="groundsUnit" name="groundsUnit" onchange="getValuesAndCalculate()">
-                              <option id="g" value="1">
-                                Gramas
-                              </option>
-                              <option id="tb" value="7.00035">
-                                Colher de Sopa
-                              </option>
-                            </select>
+            <div class="row">
+                <div class="grid-container my-3">
+                    <div class="grid-item iteractive-item">
+                        <h3>CAFÉ</h3>
+                        <!-- <input id="coffee-weight" type="text" name="" value=""> -->
+                        <p><span id="grounds-weight" class="display-data">22</span>g</p>
+                        <div class="inline-buttons">
+                            <input id="coffee-minus" class="minus" type="button" name="grounds" value="-">
+                            <input id="coffee-plus" class="plus" type="button" name="grounds" value="+">
                         </div>
 
                     </div>
-
-                    <label for="water">Quantidade de Água</label>
-                    <div class="input-group">
-                        <input class="form-control" id="water" type="number" name="water" min="0" step="any" onkeyup="startFromWater()" onchange="startFromWater()">
-                        <div class="input-group-append">
-                            <select class="form-control" id="waterUnit" name="waterUnit" onchange="getValuesAndCalculate()">
-                                <option id="ml" value="1">ml</option>
-                                <option id="l" value="1000">Litros</option>
-                                <option id="c" value="236.588">Xícaras</option>
-                            </select>
-                        </div>
-                    </div>
-                    <label for="brew">Total Café</label>
-                    <div class="input-group">
-
-                        <input class="form-control" id="brew" type="number" name="brew" min="0" step="any" onkeyup="startFromBrew()" onchange="startFromBrew()">
-                        <div class="input-group-append">
-                            <select class="form-control" id="brewUnit" name="brewUnit" onchange="getValuesAndCalculate()">
-                                <option id="ml" value="1">ml</option>
-                                <option id="l" value="1000">Litros</option>
-                                <option id="c" value="236.588">Xícaras</option>
-                            </select>
+                    <div class="grid-item iteractive-item">
+                        <h3>ÁGUA</h3>
+                        <p><span id="water-weight" class="display-data">352</span>g</p>
+                        <div class="inline-buttons">
+                            <input id="water-minus" class="minus" type="button" name="water" value="-"><!-- -->
+                            <input id="water-plus" class="plus" type="button" name="water" value="+">
                         </div>
 
                     </div>
+                    <div class="grid-item iteractive-item">
+                        <h3>PROPORÇÃO</h3>
+                        <p>1:<span id="ratio" class="display-data">16</span></p>
+                        <div class="inline-buttons">
+                            <input id="ratio-minus" class="minus" type="button" name="ratio" value="-">
+                            <input id="ratio-plus" class="plus" type="button" name="ratio" value="+">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="ratio"></label>
-                        <select class="form-control" id="ratio" name="ratio" onchange="getValuesAndCalculate()">
-                          <option value="14">
-                            14:1
-                          </option>
-                          <option value="15">
-                            15:1
-                          </option>
-                          <option selected="" value="16">
-                            16:1
-                          </option>
-                          <option value="17">
-                            17:1
-                          </option>
-                          <option value="18">
-                            18:1
-                          </option>
-                        </select>
                     </div>
+                    <div class="grid-item">
+                        <h3>CRONÔMETRO</h3>
+                        <p id="timer-display">0:00</p>
+                        <div>
 
-                    <div class="d-flex justify-content-center my-4">
-                      <span class="font-weight-bold indigo-text ml-2 mt-1">Forte</span>
-                      <form class="range-field w-75">
-                        <input id="ratioRange" class="border-0" type="range" min="14" max="18"/>
-                      </form>
-                      <span class="font-weight-bold indigo-text mr-2 mt-1">Delicado</span>
+                        </div>
+                        <div id="secondary-buttons" class="inline-buttons">
+                            <input id="start" type="button" name="" value="INICIAR">
+                            <!-- <input id="stop" class="stopwatch-button" type="button" name="" value="STOP"> -->
+                            <button id="stop" class="stopwatch-button" type="button" name="" value="STOP" hidden><i class="fas fa-stop"></i></button>
+                            <button id="pause" class="stopwatch-button" type="button" name="" value="PAUSE" hidden><i class="fas fa-pause"></i></button>
+                        </div>
                     </div>
-
-                </form>
+                </div>
             </div>
         </div>
-
-            <div class="text-center">
-                <div id="stopwatch">00:00</div>
-                <input type="button" id="start" value="Start">
-                <input type="button" id="stop" value="Stop">
-                <input type="button" id="clear" value="Clear">
-            </div>
-
-
     </body>
 </html>

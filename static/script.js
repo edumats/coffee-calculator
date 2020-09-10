@@ -1,137 +1,147 @@
+// For coffee calculator
 
+const Calculator = {
+    listenToButtons: function() {
+        let gridElements = document.getElementsByClassName('iteractive-item');
 
-// For Coffee calculator
+        Array.from(gridElements).forEach(element => {
+            let minus = element.getElementsByClassName('minus');
+            let plus = element.getElementsByClassName('plus');
+            let display = element.getElementsByClassName('display-data');
+            minus[0].addEventListener('click', () => {
 
-var lastSet = "";
+                display[0].innerHTML = parseInt(display[0].innerHTML) - 1;
+                Calculator.checkElementType(minus[0]);
+            })
+            plus[0].addEventListener('click', () => {
 
-function startFromGrounds() {
-    lastSet = "grounds";
-    getValuesAndCalculate();
-}
+                let newValue = parseInt(display[0]. innerHTML) + 1;
+                display[0].innerHTML = newValue;
+                Calculator.checkElementType(plus[0]);
 
-function startFromWater() {
-    lastSet = "water";
-    getValuesAndCalculate();
-}
+            })
+        })
+    },
+    checkElementType: function(element) {
+        let values = Calculator.getValues();
+        let name = element.getAttribute('name');
+        switch(name) {
+            case "grounds":
+                Calculator.startFromGrounds(values.grounds, values.ratio);
+                break;
+            case "water":
+                Calculator.startFromWater(values.water, values.ratio);
+                break;
+            case "ratio":
+                Calculator.startFromGrounds(values.grounds, values.ratio);
+                break;
+        }
+    },
+    getValues: function() {
+        let ratioValue = parseInt(document.getElementById('ratio').innerHTML);
+        let waterValue = parseInt(document.getElementById('water-weight').innerHTML);
+        let groundsValue = parseInt(document.getElementById('grounds-weight').innerHTML);
 
-function startFromBrew() {
-    lastSet = "brew";
-    getValuesAndCalculate();
-}
-
-function getValues() {
-    var ratioValue = parseFloat(document.getElementById('ratio').value);
-    var waterValue = parseFloat(document.getElementById('water').value);
-    var brewValue = parseFloat(document.getElementById('brew').value);
-    var groundsValue = parseFloat(document.getElementById('grounds').value);
-    var groundsWeightValue = parseFloat(document.getElementById('groundsUnit').value);
-    var brewWeightValue = parseFloat(document.getElementById('brewUnit').value);
-    var waterWeightValue = parseFloat(document.getElementById('waterUnit').value);
-    return {ratio:ratioValue, water:waterValue, brew:brewValue, grounds:groundsValue,
-            groundsWeight:groundsWeightValue, waterWeight:waterWeightValue,
-            brewWeight:brewWeightValue};
-}
-
-function getValuesAndCalculate() {
-    let calc = getValues();
-
-    switch (lastSet) {
-        case "grounds":
-            calc.water = calculateWaterRatio(calc.grounds, calc.groundsWeight, calc.waterWeight, calc.ratio);
-            calculateBrewRatio(calc.water, calc.waterWeight, calc.grounds, calc.groundsWeight, calc.brewWeight);
-            break;
-        case "water":
-            calc.grounds = calculateGroundsRatio(calc.water, calc.waterWeight, calc.ratio, calc.groundsWeight);
-            calculateBrewRatio(calc.water, calc.waterWeight, calc.grounds, calc.groundsWeight, calc.brewWeight);
-            break
-        case "brew":
-            calc.grounds = calculateGroundsFromBrew(calc.brew, calc.brewWeight, calc.groundsWeight, calc.ratio);
-            calculateWaterRatio(calc.grounds, calc.groundsWeight, calc.waterWeight, calc.ratio);
-            break;
+        return {
+            ratio:ratioValue,
+            water:waterValue,
+            grounds:groundsValue
+        };
+    },
+    startFromWater: function(water, ratio) {
+        console.log(`Water: ${water} Ratio: ${ratio}`);
+        let groundsWeight = water / ratio;
+        document.getElementById('grounds-weight').innerHTML = Math.round(groundsWeight);
+    },
+    startFromGrounds: function(grounds, ratio) {
+        console.log(`Grounds: ${grounds} Ratio: ${ratio}`);
+        let waterWeight = grounds * ratio;
+        document.getElementById('water-weight').innerHTML = waterWeight;
     }
-
-
 }
-
-function calculateBrewRatio(w, ww, g, gw, bw) {
-    b = ((w*ww - 2*g*gw)/bw).toFixed(0);
-    console.log(b)
-    document.getElementById('brew').value = b;
-}
-
-function calculateGroundsFromBrew(b, bw, gw, r) {
-    g = (((b*bw)/(r - 2))/gw).toFixed(1);
-    document.getElementById('grounds').value = g;
-    return g;
-}
-
-function calculateWaterRatio(g, gw, ww, r) {
-
-   //document.form.water.value = ((grounds * groundsWeight) * (16000 * waterWeight));
-    w = ((g * gw * r) / ww).toFixed(1);
-    document.getElementById('water').value = w;
-    return w;
-}
-
-function calculateGroundsRatio(w, ww, r, gw) {
-    g = (((w * ww) / (r * gw))).toFixed(1);
-    document.getElementById('grounds').value = g;
-    return g
-}
-
 
 // For stopwatch
-document.addEventListener('DOMContentLoaded', () => {
-    let ratioSelect = document.getElementById('ratio');
-    let ratioRange = document.getElementById('ratioRange');
-    ratioSelect.onchange = () => {
-        ratioRange.value = ratioSelect.value
-        getValuesAndCalculate();
-    }
 
-    ratioRange.onchange = () => {
-        ratioSelect.value = ratioRange.value
-        getValuesAndCalculate();
-    }
+const Timer = {
+    // General variables that can be accessed by other functions
+    // timerPaused: false,
+    timerStopped: true,
+    seconds: 0,
+    minutes: 0,
+    // Initializes event listeners for stopwatch
+    init: function() {
+        let start = document.getElementById('start');
+        let stop = document.getElementById('stop');
+        let pause = document.getElementById('pause');
+        let secondaryButtons = document.getElementsByClassName('stopwatch-button');
+        let stopwatch = document.getElementById('timer-display');
 
-    let stopwatch = document.getElementById('stopwatch'),
-        start = document.getElementById('start'),
-        stop = document.getElementById('stop'),
-        clear = document.getElementById('clear'),
-        seconds = 0, minutes = 0,
-        t;
+        /* Start button */
+        start.onclick = () => {
+            Timer.timer();
+            start.setAttribute('hidden', '');
+            Array.from(secondaryButtons).forEach(element => {
+                element.removeAttribute('hidden');
+            })
+        }
 
-    function add() {
-        seconds++;
-        if (seconds >= 60) {
-            seconds = 0;
-            minutes++;
-            if (minutes >= 60) {
-                minutes = 0;
-
+        /* Pause button */
+        pause.onclick = function() {
+            if (Timer.timerStopped === true) {
+                console.log('Resuming')
+                Timer.timer();
+                Timer.timerStopped = false;
+            } else {
+                // clearTimeout(Timer.t);
+                console.log('Pausing')
+                clearTimeout(Timer.t)
+                Timer.timerStopped = true;
             }
         }
 
-        stopwatch.textContent = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+        /* Stop button */
+        stop.onclick = function() {
+            clearTimeout(Timer.t);
+            Timer.timerStopped = true;
+            stopwatch.textContent = "00:00";
+            Timer.seconds = 0;
+            Timer.minutes = 0;
+            start.removeAttribute('hidden');
+            Array.from(secondaryButtons).forEach(element => {
+                element.setAttribute('hidden', '');
+            })
+        }
+    },
+    // Adds one second each time and updates the stopwatch display
+    add: function() {
+        Timer.seconds += 1;
+        if (Timer.seconds >= 60) {
+            Timer.seconds = 0;
+            Timer.minutes += 1;
+            if (Timer.minutes >= 60) {
+                Timer.minutes = 0;
+            }
+        }
+        let stopwatch = document.getElementById('timer-display')
 
-        timer();
-    }
-    function timer() {
-        t = setTimeout(add, 1000);
-    }
-    // timer();
+        stopwatch.textContent = (
+            Timer.minutes ? (Timer.minutes > 9 ? Timer.minutes : "0" + Timer.minutes) : "00") + ":" + (Timer.seconds > 9 ? Timer.seconds : "0" + Timer.seconds
+        );
 
-    /* Start button */
-    start.onclick = timer;
-
-    /* Stop button */
-    stop.onclick = function() {
-        clearTimeout(t);
+        // Timer.timer();
+    },
+    // Initiates the stopwatch
+    timer: function() {
+        // Timer.t = setTimeout(Timer.add, 1000);
+        if(Timer.timerStopped) {
+            Timer.t = setInterval(Timer.add, 1000);
+            Timer.timerStopped = false;
+        }
     }
+}
 
-    /* Clear button */
-    clear.onclick = function() {
-        stopwatch.textContent = "00:00";
-        seconds = 0; minutes = 0;
-    }
+// After document is loaded, initiate these functions
+document.addEventListener('DOMContentLoaded', () => {
+    Calculator.listenToButtons();
+    Timer.init();
 })
