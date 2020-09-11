@@ -9,12 +9,10 @@ const Calculator = {
             let plus = element.getElementsByClassName('plus');
             let display = element.getElementsByClassName('display-data');
             minus[0].addEventListener('click', () => {
-
                 display[0].innerHTML = parseInt(display[0].innerHTML) - 1;
                 Calculator.checkElementType(minus[0]);
             })
             plus[0].addEventListener('click', () => {
-
                 let newValue = parseInt(display[0]. innerHTML) + 1;
                 display[0].innerHTML = newValue;
                 Calculator.checkElementType(plus[0]);
@@ -22,6 +20,7 @@ const Calculator = {
             })
         })
     },
+    // Calculate values depending on which element the +- buttons were pressed
     checkElementType: function(element) {
         let values = Calculator.getValues();
         let name = element.getAttribute('name');
@@ -70,7 +69,7 @@ const Timer = {
     minutes: 0,
     // Initializes event listeners for stopwatch
     init: function() {
-        let start = document.getElementById('start');
+        let start = document.getElementById('start-button');
         let stop = document.getElementById('stop');
         let pause = document.getElementById('pause');
         let secondaryButtons = document.getElementsByClassName('stopwatch-button');
@@ -91,11 +90,15 @@ const Timer = {
                 console.log('Resuming')
                 Timer.timer();
                 Timer.timerStopped = false;
+                // Change button icon to pause
+                pause.value = '\u275A\u275A';
             } else {
                 // clearTimeout(Timer.t);
                 console.log('Pausing')
                 clearTimeout(Timer.t)
                 Timer.timerStopped = true;
+                // Change button icon to play
+                pause.value = '\u25B6';
             }
         }
 
@@ -110,6 +113,8 @@ const Timer = {
             Array.from(secondaryButtons).forEach(element => {
                 element.setAttribute('hidden', '');
             })
+            // Change button icon to pause
+            pause.value = '\u275A\u275A';
         }
     },
     // Adds one second each time and updates the stopwatch display
