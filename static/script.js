@@ -74,6 +74,9 @@ const Timer = {
         let pause = document.getElementById('pause');
         let secondaryButtons = document.getElementsByClassName('stopwatch-button');
         let stopwatch = document.getElementById('timer-display');
+        // Set timer button icons to prevent Chrome emojifying them
+        stop.value = '\u23F9';
+        pause.value = '\u23F8';
 
         /* Start button */
         start.onclick = () => {
