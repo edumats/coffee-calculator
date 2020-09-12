@@ -91,7 +91,7 @@ const Timer = {
                 Timer.timer();
                 Timer.timerStopped = false;
                 // Change button icon to pause
-                pause.value = '\u275A\u275A';
+                pause.value = '\u23F8';
             } else {
                 // clearTimeout(Timer.t);
                 console.log('Pausing')

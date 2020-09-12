@@ -1,6 +1,8 @@
 * {
     margin: 0;
     padding: 0;
+    border: 0;
+    outline: none;
 }
 
 body {
@@ -14,7 +16,7 @@ html {
 .grid-container {
     display: grid;
     grid-gap: 0.7rem;
-    grid-template-columns: 2fr minmax(100px,510px) minmax(100px,510px) 2fr;
+    grid-template-columns: 1fr minmax(100px,510px) minmax(100px,510px) 1fr;
     grid-template-rows: 1fr minmax(150px, 700px) minmax(150px, 700px) 1fr;
     height: 100vh;
 }
@@ -67,18 +69,13 @@ div.grid-container > div:nth-child(4) {
     margin: 0;
 }
 
-.display-qty {
-    display: inline-block;
-}
-
 .inline-buttons {
-    display: inline-block;
     /* Removes spaces between child buttons */
     font-size: 0;
-    margin-bottom: 2%;
 }
 
 .inline-buttons > input[type=button] {
+    font-family: 'Segoe UI Symbol';
     /* Reassigns font size to buttons */
     font-size: calc(1rem + 2vw);
     color: black;
@@ -86,16 +83,27 @@ div.grid-container > div:nth-child(4) {
     width: 40%;
     border: none;
     background-color: transparent;
+    padding: 20px;
     border-bottom: 3px solid black;
+
+}
+
+#bar {
+    width: 80%;
+    border-top: 3px solid black;
+    margin: auto;
 }
 
 #start-button {
     width: 80%;
 }
 
-.inline-buttons > input[type=button]:hover {
-    background-color: black;
-    color: white;
+/* Only only use hover when there is no touchscreen */
+@media(hover: hover) and (pointer: fine) {
+    .inline-buttons > input[type=button]:hover {
+        background-color: black;
+        color: white;
+    }
 }
 
 #water-weight {
@@ -104,8 +112,6 @@ div.grid-container > div:nth-child(4) {
     margin: 0;
     background-color: transparent;
     border: none;
-    display: inline
-
 }
 
 /* For removing arrows in number inputs */
