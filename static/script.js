@@ -77,12 +77,12 @@ const Timer = {
 
 
         /* Start button */
-        start.onclick = () => {
+        start.onclick = function() {
             Timer.timer();
             start.setAttribute('hidden', '');
             // Set timer button icons to prevent Chrome emojifying them
-            stop.value = '\u23F9';
-            pause.value = '\u23F8';
+            stop.value = '\u23F9\uFE0E';
+            pause.value = '\u23F8\uFE0E';
             Array.from(secondaryButtons).forEach(element => {
                 element.removeAttribute('hidden');
             })
@@ -91,14 +91,11 @@ const Timer = {
         /* Pause button */
         pause.onclick = function() {
             if (Timer.timerStopped === true) {
-                console.log('Resuming')
                 Timer.timer();
                 Timer.timerStopped = false;
                 // Change button icon to pause
-                pause.value = '\u23F8';
+                pause.value = '\u23F8\uFE0E';
             } else {
-                // clearTimeout(Timer.t);
-                console.log('Pausing')
                 clearTimeout(Timer.t)
                 Timer.timerStopped = true;
                 // Change button icon to play
