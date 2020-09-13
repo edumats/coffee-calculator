@@ -13,6 +13,10 @@ html {
     font-size: 100%;
 }
 
+input {
+    -webkit-border-radius:0px;
+}
+
 .grid-container {
     display: grid;
     grid-gap: 0.7rem;
