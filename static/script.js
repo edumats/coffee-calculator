@@ -81,8 +81,8 @@ const Timer = {
             Timer.timer();
             start.setAttribute('hidden', '');
             // Set timer button icons to prevent Chrome emojifying them
-            stop.value = '\u23F9\uFE0E';
-            pause.value = '\u23F8\uFE0E';
+            // stop.value = '\u23F9\uFE0E';
+            // pause.value = '\u23F8\uFE0E';
             Array.from(secondaryButtons).forEach(element => {
                 element.removeAttribute('hidden');
             })
@@ -94,12 +94,14 @@ const Timer = {
                 Timer.timer();
                 Timer.timerStopped = false;
                 // Change button icon to pause
-                pause.value = '\u23F8\uFE0E';
+                // pause.value = '\u23F8\uFE0E';
+                pause.innerHTML = '<i class="fas fa-pause"></i>';
             } else {
                 clearTimeout(Timer.t)
                 Timer.timerStopped = true;
                 // Change button icon to play
-                pause.value = '\u25B6';
+                // pause.value = '\u25B6';
+                pause.innerHTML = '<i class="fas fa-play"></i>';
             }
         }
 
@@ -115,7 +117,8 @@ const Timer = {
                 element.setAttribute('hidden', '');
             })
             // Change button icon to pause
-            pause.value = '\u275A\u275A';
+            // pause.value = '\u275A\u275A';
+            pause.innerHTML = '<i class="fas fa-pause"></i>';
         }
     },
     // Adds one second each time and updates the stopwatch display

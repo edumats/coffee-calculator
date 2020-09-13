@@ -8,6 +8,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
+        <script src="https://kit.fontawesome.com/ccd1b9e9e0.js" crossorigin="anonymous"></script>
+
         <!-- Javascript -->
         <script type="text/javascript" src="static/script.js"></script>
 
@@ -30,12 +32,10 @@
             <div class="grid-item iteractive-item">
                 <h3>ÁGUA</h3>
                 <p><span id="water-weight" class="display-data">352</span>g</p>
-                <!-- <input id="water-weight" class="display-data" type="number" value="352"> -->
                 <div class="inline-buttons">
-                    <input id="water-minus" class="minus" type="button" name="water" value="-"><!-- -->
+                    <input id="water-minus" class="minus" type="button" name="water" value="-">
                     <input id="water-plus" class="plus" type="button" name="water" value="+">
                 </div>
-
             </div>
             <div class="grid-item iteractive-item">
                 <h3>PROPORÇÃO</h3>
@@ -50,9 +50,12 @@
                 <h3>CRONÔMETRO</h3>
                 <p id="timer-display">0:00</p>
                 <div id="secondary-buttons" class="inline-buttons">
-                    <input id="start-button" type="button" name="" value="INICIAR">
+                    <!-- <input id="start-button" type="button" name="" value="INICIAR">
                     <input id="stop" class="stopwatch-button" type="button" value="" hidden>
-                    <input id="pause" class="stopwatch-button" type="button" value="" hidden>
+                    <input id="pause" class="stopwatch-button" type="button" value="" hidden> -->
+                    <button id="start-button" type="button" name="button" value="INICIAR">INICIAR</button>
+                    <button id="stop" class="stopwatch-button" type="button" name="button" hidden><i class="fas fa-stop"></i></button>
+                    <button id="pause" class="stopwatch-button" type="button" name="button" hidden><i class="fas fa-pause"></i></button>
                 </div>
             </div>
         </div>
