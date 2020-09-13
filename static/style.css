@@ -68,7 +68,7 @@ div.grid-container > div:nth-child(4) {
 }
 
 .grid-item > p {
-    font-size: calc(2rem + 2vw);
+    font-size: calc(2.2rem + 2vw);
     font-weight: 600;
     margin: 0;
     /* background-color: green; */
@@ -87,18 +87,18 @@ div.grid-container > div:nth-child(4) {
     width: 40%;
     border: none;
     background-color: transparent;
-    border-bottom: 3px solid black;
+    border-bottom: 2px solid black;
 }
 
 .inline-buttons > button {
-    font-size: calc(0.5rem + 2vw);
+    font-size: calc(0.7rem + 2vw);
     color: black;
     font-weight: 600;
     width: 40%;
     border: none;
     background-color: transparent;
     padding: 5px;
-    border-bottom: 3px solid black;
+    border-bottom: 2px solid black;
 }
 
 #bar {
