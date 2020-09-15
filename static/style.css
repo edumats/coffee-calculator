@@ -95,7 +95,6 @@ div.grid-container > div:nth-child(4) {
     width: 40%;
     border: none;
     background-color: transparent;
-    /* padding: 5px; */
     border-bottom: 2px solid black;
 }
 
@@ -114,6 +113,7 @@ div.grid-container > div:nth-child(4) {
 @media(hover: hover) and (pointer: fine) {
     .inline-buttons > input[type=button]:hover {
         background-color: black;
+        color: white;
     }
 
     .inline-buttons > button:hover {
