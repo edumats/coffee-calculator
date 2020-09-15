@@ -3,7 +3,7 @@
 const Calculator = {
     listenToButtons: function() {
         let gridElements = document.getElementsByClassName('iteractive-item');
-
+        // Adds listeners to + and - buttons to change values of calculator
         Array.from(gridElements).forEach(element => {
             let minus = element.getElementsByClassName('minus');
             let plus = element.getElementsByClassName('plus');
@@ -18,6 +18,20 @@ const Calculator = {
                 Calculator.checkElementType(plus[0]);
 
             })
+        })
+
+        let iteractiveButtons = document.getElementsByClassName('control-button');
+        Array.from(iteractiveButtons).forEach(button => {
+            // Turns text inside button to the same color as grandfather element
+            button.onmouseover = () => {
+                // Gets background-color property of grandfather element .grid-item
+                let buttonStyles = window.getComputedStyle(button.parentNode.parentNode).getPropertyValue('background-color');
+                button.style.color = buttonStyles;
+            }
+            // When mouse is out of element, text of button turn black
+            button.onmouseout = () => {
+                button.style.color = 'black';
+            }
         })
     },
     // Calculate values depending on which element the +- buttons were pressed
@@ -36,6 +50,7 @@ const Calculator = {
                 break;
         }
     },
+    // Gets values from display elements
     getValues: function() {
         let ratioValue = parseInt(document.getElementById('ratio').innerHTML);
         let waterValue = parseInt(document.getElementById('water-weight').innerHTML);
@@ -48,12 +63,12 @@ const Calculator = {
         };
     },
     startFromWater: function(water, ratio) {
-        console.log(`Water: ${water} Ratio: ${ratio}`);
+        // console.log(`Water: ${water} Ratio: ${ratio}`);
         let groundsWeight = water / ratio;
         document.getElementById('grounds-weight').innerHTML = Math.round(groundsWeight);
     },
     startFromGrounds: function(grounds, ratio) {
-        console.log(`Grounds: ${grounds} Ratio: ${ratio}`);
+        // console.log(`Grounds: ${grounds} Ratio: ${ratio}`);
         let waterWeight = grounds * ratio;
         document.getElementById('water-weight').innerHTML = waterWeight;
     }
@@ -63,7 +78,6 @@ const Calculator = {
 
 const Timer = {
     // General variables that can be accessed by other functions
-    // timerPaused: false,
     timerStopped: true,
     seconds: 0,
     minutes: 0,
@@ -95,13 +109,13 @@ const Timer = {
                 Timer.timerStopped = false;
                 // Change button icon to pause
                 // pause.value = '\u23F8\uFE0E';
-                pause.innerHTML = '<i class="fas fa-pause"></i>';
+                pause.innerHTML = '<i class="icon-pause"></i>';
             } else {
                 clearTimeout(Timer.t)
                 Timer.timerStopped = true;
                 // Change button icon to play
                 // pause.value = '\u25B6';
-                pause.innerHTML = '<i class="fas fa-play"></i>';
+                pause.innerHTML = '<i class="icon-play"></i>';
             }
         }
 
@@ -118,7 +132,7 @@ const Timer = {
             })
             // Change button icon to pause
             // pause.value = '\u275A\u275A';
-            pause.innerHTML = '<i class="fas fa-pause"></i>';
+            pause.innerHTML = '<i class="icon-pause"></i>';
         }
     },
     // Adds one second each time and updates the stopwatch display
