@@ -34,18 +34,15 @@ const Calculator = {
             function hover() {
                 // Gets background-color property of grandfather element .grid-item
                 let grandfatherColor = window.getComputedStyle(button.parentNode.parentNode).getPropertyValue('background-color');
-                button.style.color = grandfatherColor;
+                button.style.color = 'black';
             }
 
             function darkenBackground() {
                 button.style.color = 'black';
             }
+
             // Turns text inside button to the same color as grandfather element
-            button.onmouseenter= () => {
-                // Gets background-color property of grandfather element .grid-item
-                let grandfatherColor = window.getComputedStyle(button.parentNode.parentNode).getPropertyValue('background-color');
-                button.style.color = grandfatherColor;
-            }
+            button.onmouseenter = hover;
             // When mouse is out of element, text of button turn black
             button.onmouseleave = darkenBackground;
             button.onclick = darkenBackground;
@@ -131,13 +128,11 @@ const Timer = {
                 Timer.timer();
                 Timer.timerStopped = false;
                 // Change button icon to pause
-                // pause.value = '\u23F8\uFE0E';
                 pause.innerHTML = '<i class="icon-pause"></i>';
             } else {
                 clearTimeout(Timer.t)
                 Timer.timerStopped = true;
                 // Change button icon to play
-                // pause.value = '\u25B6';
                 pause.innerHTML = '<i class="icon-play"></i>';
             }
         }
@@ -172,8 +167,6 @@ const Timer = {
         stopwatch.textContent = (
             Timer.minutes ? (Timer.minutes > 9 ? Timer.minutes : "0" + Timer.minutes) : "00") + ":" + (Timer.seconds > 9 ? Timer.seconds : "0" + Timer.seconds
         );
-
-        // Timer.timer();
     },
     // Initiates the stopwatch
     timer: function() {
