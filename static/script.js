@@ -34,18 +34,18 @@ const Calculator = {
             function hover() {
                 // Gets background-color property of grandfather element .grid-item
                 let grandfatherColor = window.getComputedStyle(button.parentNode.parentNode).getPropertyValue('background-color');
-                button.style.color = 'black';
+                button.style.color = grandfatherColor;
             }
 
-            function darkenBackground() {
+            function darkenFont() {
                 button.style.color = 'black';
             }
 
             // Turns text inside button to the same color as grandfather element
             button.onmouseenter = hover;
             // When mouse is out of element, text of button turn black
-            button.onmouseleave = darkenBackground;
-            button.onclick = darkenBackground;
+            button.onmouseleave = darkenFont;
+            button.onclick = darkenFont;
         })
     },
     checkIfNumberIsValid: function(number, min) {
@@ -129,11 +129,13 @@ const Timer = {
                 Timer.timerStopped = false;
                 // Change button icon to pause
                 pause.innerHTML = '<i class="icon-pause"></i>';
+                pause.style.color = 'black';
             } else {
                 clearTimeout(Timer.t)
                 Timer.timerStopped = true;
-                // Change button icon to play
+                // Change pause button icon to play
                 pause.innerHTML = '<i class="icon-play"></i>';
+                pause.style.color = 'black';
             }
         }
 
@@ -148,7 +150,7 @@ const Timer = {
             Array.from(secondaryButtons).forEach(element => {
                 element.setAttribute('hidden', '');
             })
-            // Change button icon to pause
+            // Change pause button icon to pause
             pause.innerHTML = '<i class="icon-pause"></i>';
         }
     },
