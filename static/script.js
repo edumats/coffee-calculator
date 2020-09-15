@@ -32,13 +32,13 @@ const Calculator = {
         let iteractiveButtons = document.getElementsByClassName('control-button');
         Array.from(iteractiveButtons).forEach(button => {
             // Turns text inside button to the same color as grandfather element
-            button.onmouseover = () => {
+            button.onmouseenter= () => {
                 // Gets background-color property of grandfather element .grid-item
                 let buttonStyles = window.getComputedStyle(button.parentNode.parentNode).getPropertyValue('background-color');
                 button.style.color = buttonStyles;
             }
             // When mouse is out of element, text of button turn black
-            button.onmouseout = () => {
+            button.onmouseleave = () => {
                 button.style.color = 'black';
             }
         })
@@ -146,7 +146,6 @@ const Timer = {
                 element.setAttribute('hidden', '');
             })
             // Change button icon to pause
-            // pause.value = '\u275A\u275A';
             pause.innerHTML = '<i class="icon-pause"></i>';
         }
     },
