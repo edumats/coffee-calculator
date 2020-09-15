@@ -31,16 +31,24 @@ const Calculator = {
 
         let iteractiveButtons = document.getElementsByClassName('control-button');
         Array.from(iteractiveButtons).forEach(button => {
+            function hover() {
+                // Gets background-color property of grandfather element .grid-item
+                let grandfatherColor = window.getComputedStyle(button.parentNode.parentNode).getPropertyValue('background-color');
+                button.style.color = grandfatherColor;
+            }
+
+            function darkenBackground() {
+                button.style.color = 'black';
+            }
             // Turns text inside button to the same color as grandfather element
             button.onmouseenter= () => {
                 // Gets background-color property of grandfather element .grid-item
-                let buttonStyles = window.getComputedStyle(button.parentNode.parentNode).getPropertyValue('background-color');
-                button.style.color = buttonStyles;
+                let grandfatherColor = window.getComputedStyle(button.parentNode.parentNode).getPropertyValue('background-color');
+                button.style.color = grandfatherColor;
             }
             // When mouse is out of element, text of button turn black
-            button.onmouseleave = () => {
-                button.style.color = 'black';
-            }
+            button.onmouseleave = darkenBackground;
+            button.onclick = darkenBackground;
         })
     },
     checkIfNumberIsValid: function(number, min) {
