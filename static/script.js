@@ -8,12 +8,21 @@ const Calculator = {
             let minus = element.getElementsByClassName('minus');
             let plus = element.getElementsByClassName('plus');
             let display = element.getElementsByClassName('display-data');
+            // Adds click event to each minus button
             minus[0].addEventListener('click', () => {
-                display[0].innerHTML = parseInt(display[0].innerHTML) - 1;
-                Calculator.checkElementType(minus[0]);
+                // String value of value display
+                let displayedNumber = display[0].innerHTML;
+                // Limits displayable number to 0 or greater
+                // If display number is at least 1, subtract. Otherwise, do nothing
+                if (Calculator.checkIfNumberIsValid(parseInt(displayedNumber), 1) === true) {
+                    display[0].innerHTML = parseInt(displayedNumber) - 1;
+                    Calculator.checkElementType(minus[0]);
+                }
+                return;
             })
+            // Adds click event to each plus button
             plus[0].addEventListener('click', () => {
-                let newValue = parseInt(display[0]. innerHTML) + 1;
+                let newValue = parseInt(display[0].innerHTML) + 1;
                 display[0].innerHTML = newValue;
                 Calculator.checkElementType(plus[0]);
 
@@ -33,6 +42,12 @@ const Calculator = {
                 button.style.color = 'black';
             }
         })
+    },
+    checkIfNumberIsValid: function(number, min) {
+        if (number < min) {
+            return false
+        }
+        return true;
     },
     // Calculate values depending on which element the +- buttons were pressed
     checkElementType: function(element) {
